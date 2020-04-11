@@ -81,7 +81,7 @@ def call(){
                 
                 sh 'git clean -fdx'                    
                 
-                git branch: "${GIT_BRANCH}", url: "${GIT_URL}",credentialsId: 'ELM'
+                git branch: "${GIT_BRANCH}", url: "${GIT_URL}",credentialsId: 'TestCredential'
 
                 dir("${env.WORKSPACE}"){
                     fileOperations([fileDeleteOperation(excludes: '', includes: '**/logfile.log')])
@@ -175,44 +175,6 @@ def call(){
         }
         
         stages {
-            // stage ('Initialize') {
-            //     steps {
-            //         echo "====== Initializing...... =========="                  
-
-            //         script{currentStep = 'Initialize'}
-                
-            //         sh '''
-            //             echo "Used JDK = ${JAVA_HOME}"
-            //             echo "Used MAVEN = ${MAVEN_HOME}"
-            //         '''
-            //          script {
-            //             GIT_URL = scm.getUserRemoteConfigs()[0].getUrl().trim()
-            //             GIT_BRANCH = scm.branches[0].name.trim()
-            //             GIT_BRANCH = GIT_BRANCH.replace("*/","")          
-            //         } 
-
-            //         sh '''
-            //             echo "Used git URL = ${GIT_URL}"
-            //             echo "Used git Branch = ${GIT_BRANCH}"
-            //         '''
-            //     }
-            // }
-            
-            // stage ('Clone') {
-            //     steps {
-            //         echo "====== Cloning...... =========="
-
-            //         script{currentStep = 'Clone'}
-                    
-            //         sh 'git clean -fdx'                    
-                    
-            //         git branch: "${GIT_BRANCH}", url: "${GIT_URL}",credentialsId: 'ELM'
-
-            //         dir("${env.WORKSPACE}"){
-            //             fileOperations([fileDeleteOperation(excludes: '', includes: '**/logfile.log')])
-            //         }
-            //     }
-            // }
             
             stage ('Build') {
                 steps {
